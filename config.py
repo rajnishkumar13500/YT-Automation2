@@ -64,7 +64,7 @@ MAX_IMAGES = int(os.getenv("MAX_IMAGES", "15"))  # Maximum images to generate
 
 # === Call-to-Action Settings ===
 CTA_TEXT = os.getenv("CTA_TEXT", "Like & Subscribe ❤️")  # Text shown in last seconds
-CTA_DURATION = int(os.getenv("CTA_DURATION", "5"))  # How many seconds to show CTA
+CTA_DURATION = int(os.getenv("CTA_DURATION", "7"))  # How many seconds to show CTA
 
 # === Upload Settings ===
 DEFAULT_PRIVACY = os.getenv("DEFAULT_PRIVACY", "public")

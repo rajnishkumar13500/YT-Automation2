@@ -143,10 +143,15 @@ def process_song(creds, song_path, no_upload=False, privacy_status="public", fil
     safe_name = "".join(c if c.isalnum() or c in "._- " else "_" for c in song_name)
     video_path = VIDEOS_DIR / f"{safe_name}.mp4"
     try:
+        cta_text = analysis.get("cta_text") if analysis else None
+        if cta_text:
+            print(f"  📝 CTA Text: {cta_text}")
+            
         video_path = create_visualizer_video(
             song_path, video_path, metadata,
             analysis=analysis,
-            background_images=bg_images
+            background_images=bg_images,
+            cta_text=cta_text
         )
     except Exception as e:
         print(f"\n  ❌ FAILED: Video creation failed: {e}")

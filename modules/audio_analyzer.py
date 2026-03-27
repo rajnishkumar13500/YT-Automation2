@@ -93,7 +93,7 @@ def analyze_song(audio_path):
             analysis = json.loads(text)
 
             # Validate
-            required = ["song_name", "artist", "lyrics", "genre", "mood", "colors", "image_prompts", "timed_lyrics"]
+            required = ["song_name", "artist", "lyrics", "genre", "mood", "colors", "image_prompts", "timed_lyrics", "cta_text"]
             for field in required:
                 if field not in analysis:
                     raise ValueError(f"Missing field: {field}")
@@ -170,6 +170,12 @@ I need you to identify and return the following information about this song:
    - For a party/dance song: "Vibrant Bollywood dance scene with colorful lights, energetic crowd, neon glow, celebration, festive Indian atmosphere"
    - Each prompt should be 40-60 words and describe a SPECIFIC visual scene related to the song
 11. **vibe_keywords**: 5-8 keywords describing the song's overall vibe (used for YouTube tags)
+12. **cta_text**: A short, highly engaging Call-To-Action (max 50 chars) for the end of the video.
+   - MUST MATCH the song's theme.
+   - If Devotional/Spiritual: Use faith-based or blessing-oriented text (e.g., "जय श्री राम लिखकर अपनी श्रद्धा दिखाओ 🙏", "भगवान के भक्त हो तो चैनल को सब्सक्राइब करो 🙏", "अगर आप सच्चे भक्त हैं तो लाइक करें 🔱").
+   - If Romantic: "Like & Subscribe for more love songs ❤️" or similar relatable quote.
+   - If Party/Energetic: "Subscribe for more viral beats 🔥"
+   - Keep it short and impactful. Do not use generic CTAs if the song has a strong theme.
 
 RESPOND IN THIS EXACT JSON FORMAT (no markdown, no code block, no extra text):
 {
@@ -186,7 +192,8 @@ RESPOND IN THIS EXACT JSON FORMAT (no markdown, no code block, no extra text):
     {"text": "line2", "start": 4.0, "end": 7.2}
   ],
   "image_prompts": ["prompt1", "prompt2", "...up to 10 prompts"],
-  "vibe_keywords": ["keyword1", "keyword2", "..."]
+  "vibe_keywords": ["keyword1", "keyword2", "..."],
+  "cta_text": "..."
 }
 
 ONLY return the JSON. Nothing else."""
@@ -216,5 +223,6 @@ def _fallback_analysis(audio_path):
             "Mountain landscape at golden hour with dramatic clouds, warm sunlight, epic wide angle, cinematic nature photography style",
             "Aurora borealis over a calm lake, mirror reflections, greens and purples dancing in sky, magical atmosphere, ultra detailed"
         ],
-        "vibe_keywords": ["music", "vibes", "mood", "chill", "songs"]
+        "vibe_keywords": ["music", "vibes", "mood", "chill", "songs"],
+        "cta_text": "Like & Subscribe ❤️"
     }
