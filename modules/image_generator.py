@@ -60,12 +60,23 @@ def generate_background_images(analysis, count=8):
         
     for i, prompt in enumerate(image_prompts[:count]):
         enhanced = (
-            f"{context}{prompt}. "
-            f"If any historical or real person is mentioned, strictly ensure their face, attire, and likeness are highly accurate and match their real-world appearance. "
-            f"Vertical 9:16 portrait photography, highly realistic, natural lighting, "
-            f"cinematic composition, shot on 35mm lens, photorealistic, authentic, "
-            f"NO cartoon, NO digital art, no text, no watermarks"
-        )
+    f"{context}{prompt}. "
+    f"The image MUST strongly reflect the emotional and musical vibe of the song — "
+    f"including its mood, energy, rhythm, and atmosphere. "
+    f"Visualize the feeling of listening to this song as a cinematic moment. "
+    f"If the song is emotional, show deep expressions and soft lighting; "
+    f"if energetic, show motion, intensity, dynamic lighting; "
+    f"if devotional, show divine aura, spiritual glow, भक्तिमय वातावरण. "
+
+    f"Highly immersive scene that feels synced to music beats and lyrics. "
+
+    f"If any historical or real person is mentioned, strictly ensure their face, attire, and likeness are highly accurate and match their real-world appearance. "
+
+    f"Vertical 9:16 portrait photography, highly realistic, natural lighting, "
+    f"cinematic composition, shallow depth of field, shot on 35mm lens, "
+    f"photorealistic, ultra-detailed, authentic textures, "
+    f"NO cartoon, NO digital art, no text, no watermarks"
+    )
 
         print(f"    🖌️  Image {i+1}/{min(count, len(image_prompts))}...")
 
