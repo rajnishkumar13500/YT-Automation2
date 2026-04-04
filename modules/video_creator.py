@@ -52,7 +52,7 @@ def get_audio_metadata(audio_path):
             result = subprocess.run(
                 [FFPROBE_PATH, "-v", "quiet", "-print_format", "json",
                  "-show_format", str(audio_path)],
-                capture_output=True, text=True
+                capture_output=True, text=True, encoding="utf-8"
             )
             probe_data = json.loads(result.stdout)
             metadata["duration"] = float(probe_data["format"]["duration"])

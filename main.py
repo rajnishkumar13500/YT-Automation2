@@ -22,6 +22,10 @@ import time
 from pathlib import Path
 from datetime import datetime
 
+# Prevent print() from crashing when displaying Hindi/Unicode characters in the Windows console
+if sys.stdout.encoding.lower() != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 from config import (
     SONGS_DIR, VIDEOS_DIR, THUMBNAILS_DIR, DRIVE_FOLDER_ID, OUTPUT_DIR,
     SECONDS_PER_IMAGE, MIN_IMAGES, MAX_IMAGES

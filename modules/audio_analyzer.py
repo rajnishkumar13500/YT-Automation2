@@ -44,11 +44,19 @@ def analyze_song(audio_path):
 
     print(f"  🎧 Analyzing audio with Gemini AI...")
 
-    # Upload the audio file
+    # Upload the audio file with a safe ASCII name to avoid 'ascii' codec errors in HTTP headers
+    import shutil
+    import tempfile
+    
+    # Create temp copy
+    temp_dir = Path(tempfile.gettempdir())
+    temp_path = temp_dir / f"gemini_upload_{int(time.time())}{audio_path.suffix}"
+    shutil.copy2(audio_path, temp_path)
+
     audio_file = None
     for attempt in range(3):
         try:
-            audio_file = client.files.upload(file=str(audio_path))
+            audio_file = client.files.upload(file=str(temp_path))
             break
         except Exception as e:
             if "429" in str(e) or "quota" in str(e).lower():
@@ -56,7 +64,12 @@ def analyze_song(audio_path):
                 print(f"  ⏳ Upload rate limited, waiting {wait}s...")
                 time.sleep(wait)
             else:
+                try: temp_path.unlink()
+                except: pass
                 raise
+
+    try: temp_path.unlink()
+    except: pass
 
     if audio_file is None:
         raise RuntimeError("Failed to upload audio file")
