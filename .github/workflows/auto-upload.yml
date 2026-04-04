@@ -1,6 +1,9 @@
 name: Auto Upload YouTube Shorts
 
 on:
+  schedule:
+    - cron: '0 6 * * *'   # Runs at 6:00 AM UTC (11:30 AM IST)
+    - cron: '0 18 * * *'  # Runs at 6:00 PM UTC (11:30 PM IST)
   workflow_dispatch:  # Allow manual trigger via UI or API
   repository_dispatch:
     types: [trigger-automation]  # Allow trigger via Webhook/Cloudflare
