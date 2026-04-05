@@ -28,24 +28,44 @@ def authenticate():
     """
     creds = None
 
-    # Load cached token if it exists
-    if TOKEN_PATH.exists():
-        creds = Credentials.from_authorized_user_file(str(TOKEN_PATH), SCOPES)
+    # Load cached token if it exists and is not empty
+    if TOKEN_PATH.exists() and TOKEN_PATH.stat().st_size > 10:
+        try:
+            creds = Credentials.from_authorized_user_file(str(TOKEN_PATH), SCOPES)
+        except Exception as e:
+            raise ValueError(
+                f"❌ Failed to parse {TOKEN_PATH}: {e}\n"
+                "   If you are using GitHub Actions, ensure the YOUTUBE_TOKEN secret contains the full JSON contents."
+            )
+    elif TOKEN_PATH.exists() and TOKEN_PATH.stat().st_size > 0:
+        print(f"⚠️  Warning: {TOKEN_PATH} exists but seems empty. If on GitHub Actions, check YOUTUBE_TOKEN secret.")
 
     # If no valid credentials, run OAuth flow
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            if not CLIENT_SECRET_PATH.exists():
+            if not CLIENT_SECRET_PATH.exists() or CLIENT_SECRET_PATH.stat().st_size < 10:
                 raise FileNotFoundError(
-                    f"❌ client_secret.json not found at {CLIENT_SECRET_PATH}\n"
-                    "   Download it from Google Cloud Console:\n"
+                    f"❌ client_secret.json is missing or empty at {CLIENT_SECRET_PATH}\n"
+                    "   If you are using GitHub Actions, ensure the YOUTUBE_CLIENT_SECRET secret contains the full JSON contents.\n"
+                    "   Otherwise, download it from Google Cloud Console:\n"
                     "   1. Go to https://console.cloud.google.com/\n"
                     "   2. Create/select project → Enable YouTube Data API v3 + Google Drive API\n"
                     "   3. Credentials → Create OAuth 2.0 Client ID (Desktop app)\n"
                     "   4. Download JSON → save as credentials/client_secret.json"
                 )
+            
+            # Prevent running local server if we're in an environment without a display (like GH Actions)
+            import os
+            if os.environ.get("GITHUB_ACTIONS") == "true":
+                raise RuntimeError(
+                    "❌ Attempted to open a browser for Google OAuth inside GitHub Actions.\n"
+                    "   This happens because 'token.json' is missing, empty, or invalid.\n"
+                    "   Please run `python main.py` locally to authenticate, then copy the ENTIRE "
+                    "contents of credentials/token.json into the YOUTUBE_TOKEN GitHub Secret."
+                )
+
             flow = InstalledAppFlow.from_client_secrets_file(
                 str(CLIENT_SECRET_PATH), SCOPES
             )
