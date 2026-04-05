@@ -54,8 +54,8 @@ VIDEO_HEIGHT = 1920
 VIDEO_FPS = 30
 MAX_VIDEO_DURATION = int(os.getenv("MAX_VIDEO_DURATION", "59"))
 INTRO_SKIP_SECONDS = int(os.getenv("INTRO_SKIP_SECONDS", "10"))
-WATERMARK_TEXT = os.getenv("WATERMARK_TEXT", "Musiqstar")
-CHANNEL_NAME = os.getenv("CHANNEL_NAME", "Musiqstar")  # Default artist/channel name
+WATERMARK_TEXT = os.getenv("WATERMARK_TEXT", "Shlok")
+CHANNEL_NAME = os.getenv("CHANNEL_NAME", "Shlok")  # Default artist/channel name
 
 # === Image Generation Settings ===
 SECONDS_PER_IMAGE = int(os.getenv("SECONDS_PER_IMAGE", "5"))  # Target duration per image
