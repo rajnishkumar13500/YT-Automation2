@@ -58,8 +58,8 @@ jobs:
         UPLOAD_CATEGORY_ID=10
         MAX_VIDEO_DURATION=59
         INTRO_SKIP_SECONDS=10
-        WATERMARK_TEXT=Musiqstar
-        CHANNEL_NAME=Musiqstar
+        WATERMARK_TEXT=Shlok
+        CHANNEL_NAME=Shlok
         SECONDS_PER_IMAGE=3
         MIN_IMAGES=4
         MAX_IMAGES=15
