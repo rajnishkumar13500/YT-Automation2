@@ -181,17 +181,25 @@ def move_song_to_processed(creds, file_id, filename):
 
     try:
         service = build("drive", "v3", credentials=creds)
+        
         # Retrieve the existing parents to remove
-        file = service.files().get(fileId=file_id, fields='parents').execute()
+        file = service.files().get(fileId=file_id, fields='parents', supportsAllDrives=True).execute()
         previous_parents = ",".join(file.get('parents', []))
         
         # Move the file to the new folder
-        service.files().update(
-            fileId=file_id,
-            addParents=DRIVE_PROCESSED_FOLDER_ID,
-            removeParents=previous_parents,
-            fields='id, parents'
-        ).execute()
+        kwargs = {
+            'fileId': file_id,
+            'addParents': DRIVE_PROCESSED_FOLDER_ID,
+            'fields': 'id, parents',
+            'supportsAllDrives': True
+        }
+        
+        # Do not include removeParents if there are no previous parents, otherwise API throws 400
+        if previous_parents:
+            kwargs['removeParents'] = previous_parents
+            
+        service.files().update(**kwargs).execute()
+        
         print(f"  📂 Moved '{filename}' to Processed folder on Google Drive")
         return True
     except Exception as e:
