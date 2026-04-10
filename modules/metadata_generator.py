@@ -66,7 +66,7 @@ USE THIS CONTEXT to make the title, description, and tags deeply relevant to the
 For example:
 - If it's a devotional song about Hanuman Ji → title should mention Hanuman, Bajrangbali, Jai Hanuman
 - If it's a Ram bhajan → title should mention Ram, Sita, Ayodhya
-- If it's a romantic Bollywood song → title should feel romantic, emotional, use Hindi phrases
+- If it's a romantic Bollywood song → title should feel romantic, emotional, use Hinglish phrases
 - If it's a motivational rap → title should feel powerful, energetic
 - NEVER use generic titles like "Audio Spectrum" or "Music Visualization"
 """
@@ -85,14 +85,14 @@ RULES:
 
 1. **TITLE** (max 80 chars):
    - MUST reflect the song's actual meaning and theme
+   - Write the title strictly in HINGLISH (Hindi written in the English alphabet). Do NOT use Devanagari/Hindi script.
    - Include 1-2 relevant emojis
    - Use proven viral patterns:
-     * For devotional: "🙏 जय बजरंगबली | [Song] | Hanuman Bhajan #shorts"
+     * For devotional: "🙏 Jai Bajrangbali | [Song] | Hanuman Bhajan #shorts"
      * For romantic: "💔 [Song Name] | Dil Ko Chu Jaye ✨ #shorts"
      * For party: "🔥 [Song Name] | Party Anthem 💃 #shorts"
      * For sad: "😢 [Song Name] | This Hits Different 💔 #shorts"
    - Include #shorts naturally
-   - Use the song's LANGUAGE in the title when appropriate (Hindi title for Hindi song)
    - Make it SEARCHABLE — use words people actually search for
 
 2. **DESCRIPTION** (300-500 chars):
