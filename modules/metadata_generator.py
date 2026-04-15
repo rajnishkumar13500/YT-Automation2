@@ -100,7 +100,7 @@ RULES:
    - If devotional: Include a prayer/blessing like "जय श्री राम 🙏"
    - If romantic: Include a relatable love quote
    - Song credit line with artist name
-   - Call-to-action: "Like & Subscribe ❤️"
+   - Call-to-action in short Hinglish, e.g. "Like aur subscribe karein ❤️"
    - 6-8 hashtags at end including #shorts
    - Use the song's language where natural
 
@@ -207,7 +207,7 @@ def _generate_fallback_metadata(song_name, artist, analysis=None):
     desc = (
         f"{emoji} {song_name} by {artist}\n"
         f"{description_text}\n\n"
-        f"Like & Subscribe for more! ❤️\n\n"
+        f"Like aur subscribe karein ❤️\n\n"
         f"#shorts #music #viral #{genre.lower().replace(' ', '')} "
         f"#trending #{mood.lower().replace(' ', '')} #songs #hindi"
     )

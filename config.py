@@ -54,8 +54,8 @@ VIDEO_HEIGHT = 1920
 VIDEO_FPS = 30
 MAX_VIDEO_DURATION = int(os.getenv("MAX_VIDEO_DURATION", "59"))
 INTRO_SKIP_SECONDS = int(os.getenv("INTRO_SKIP_SECONDS", "10"))
-WATERMARK_TEXT = os.getenv("WATERMARK_TEXT", "Shlok")
-CHANNEL_NAME = os.getenv("CHANNEL_NAME", "Shlok")  # Default artist/channel name
+WATERMARK_TEXT = os.getenv("WATERMARK_TEXT", "shlokas")
+CHANNEL_NAME = os.getenv("CHANNEL_NAME", "shlokas")  # Default artist/channel name
 
 # === Image Generation Settings ===
 SECONDS_PER_IMAGE = int(os.getenv("SECONDS_PER_IMAGE", "5"))  # Target duration per image
@@ -63,7 +63,7 @@ MIN_IMAGES = int(os.getenv("MIN_IMAGES", "4"))  # Minimum images to generate
 MAX_IMAGES = int(os.getenv("MAX_IMAGES", "15"))  # Maximum images to generate
 
 # === Call-to-Action Settings ===
-CTA_TEXT = os.getenv("CTA_TEXT", "Like & Subscribe ❤️")  # Text shown in last seconds
+CTA_TEXT = os.getenv("CTA_TEXT", "Like aur subscribe karein ❤️")  # Text shown in last seconds
 CTA_DURATION = int(os.getenv("CTA_DURATION", "7"))  # How many seconds to show CTA
 
 # === Upload Settings ===
